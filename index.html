@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STUD'S 2027 A/W NEW COLLECTION</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a; --deep: #111111; --charcoal: #1c1c1c; --steel: #2a2a2a;
+    --mid: #444444; --silver: #888888; --light: #cccccc; --white: #f0f0f0;
+    --gold: #c8a96e; --army: #4a5240; --army-light: #6b7560;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent); backdrop-filter: blur(8px); }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.2em; color: var(--white); }
+  .nav-logo em { font-style: normal; color: var(--gold); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { font-family: 'Oswald', sans-serif; font-size: 11px; letter-spacing: 0.3em; color: var(--silver); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .hero { position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; background: var(--black); }
+  .hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px); }
+  .hero-badge { font-family: 'Oswald', sans-serif; font-size: 11px; letter-spacing: 0.4em; color: var(--silver); text-transform: uppercase; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s; }
+  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(72px, 14vw, 160px); letter-spacing: 0.08em; line-height: 0.9; text-align: center; color: var(--white); opacity: 0; animation: fadeUp 0.9s ease forwards 0.5s; }
+  .hero-title span { display: block; font-size: 0.38em; letter-spacing: 0.35em; color: var(--gold); margin-top: 12px; }
+  .hero-sub { margin-top: 32px; font-size: 12px; letter-spacing: 0.25em; color: var(--silver); text-transform: uppercase; opacity: 0; animation: fadeUp 0.8s ease forwards 0.8s; }
+  .hero-line { position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeUp 0.8s ease forwards 1.2s; }
+  .hero-line span { font-size: 10px; letter-spacing: 0.3em; color: var(--silver); text-transform: uppercase; }
+  .scroll-bar { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .feature-strip { display: flex; border-top: 1px solid var(--steel); border-bottom: 1px solid var(--steel); }
+  .feature-strip-item { flex: 1; padding: 32px 36px; border-right: 1px solid var(--steel); }
+  .feature-strip-item:last-child { border-right: none; }
+  .feature-icon { font-size: 20px; margin-bottom: 12px; display: block; }
+  .feature-name { font-family: 'Oswald', sans-serif; font-size: 13px; letter-spacing: 0.2em; color: var(--white); text-transform: uppercase; margin-bottom: 6px; }
+  .feature-desc { font-size: 11px; color: var(--silver); line-height: 1.6; }
+  section { padding: 120px 48px; max-width: 1400px; margin: 0 auto; }
+  .section-header { display: flex; align-items: flex-start; gap: 32px; margin-bottom: 80px; }
+  .section-num { font-family: 'Bebas Neue', sans-serif; font-size: 80px; color: var(--steel); line-height: 1; flex-shrink: 0; }
+  .section-meta { padding-top: 12px; }
+  .section-tag { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.45em; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; display: block; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 60px); letter-spacing: 0.06em; color: var(--white); line-height: 1; }
+  .section-model { font-family: 'Oswald', sans-serif; font-size: 13px; letter-spacing: 0.2em; color: var(--silver); margin-top: 6px; text-transform: uppercase; }
+  .divider { height: 1px; background: linear-gradient(to right, var(--gold), transparent 60%); margin: 0 48px; opacity: 0.4; }
+  .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .product-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+  .card { background: var(--charcoal); padding: 52px 48px; position: relative; overflow: hidden; transition: background 0.3s ease; }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold), transparent); opacity: 0; transition: opacity 0.3s; }
+  .card:hover { background: var(--steel); }
+  .card:hover::before { opacity: 1; }
+  .card-accent { background: var(--deep); }
+  .card-highlight { background: linear-gradient(135deg, var(--charcoal) 0%, #1a1a14 100%); border: 1px solid rgba(200,169,110,0.15); }
+  .card-label { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.4em; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; display: block; }
+  .card-title { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.1em; color: var(--white); margin-bottom: 16px; }
+  .card-body { font-size: 13px; line-height: 1.9; color: var(--light); font-weight: 300; }
+  .card-body strong { color: var(--white); font-weight: 500; }
+  .spec-table { width: 100%; border-collapse: collapse; margin-top: 32px; }
+  .spec-table tr { border-bottom: 1px solid var(--steel); }
+  .spec-table td { padding: 14px 0; font-size: 12px; vertical-align: top; }
+  .spec-table td:first-child { color: var(--silver); width: 160px; font-family: 'Oswald', sans-serif; font-weight: 300; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em; }
+  .spec-table td:last-child { color: var(--light); line-height: 1.7; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .tag { padding: 5px 14px; border: 1px solid var(--steel); font-size: 10px; letter-spacing: 0.2em; color: var(--silver); font-family: 'Oswald', sans-serif; font-weight: 300; text-transform: uppercase; }
+  .tag.gold { border-color: rgba(200,169,110,0.5); color: var(--gold); }
+  .swatches { display: flex; gap: 12px; margin-top: 24px; align-items: center; }
+  .swatch-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .swatch { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); }
+  .swatch-label { font-size: 9px; letter-spacing: 0.2em; color: var(--silver); font-family: 'Oswald', sans-serif; text-transform: uppercase; }
+  .swatch.black { background: #1a1a1a; }
+  .swatch.army { background: var(--army); }
+  .swatch.grey { background: #666; }
+  .price-badge { display: inline-block; margin-top: 28px; padding: 8px 20px; border: 1px solid var(--gold); font-family: 'Oswald', sans-serif; font-size: 13px; letter-spacing: 0.15em; color: var(--gold); }
+  .price-badge span { font-family: 'Bebas Neue', sans-serif; font-size: 20px; margin-left: 8px; }
+  .warning-box { margin-top: 24px; padding: 16px 20px; border-left: 3px solid #8b4513; background: rgba(139,69,19,0.08); }
+  .warning-box p { font-size: 11px; color: #cd853f; line-height: 1.7; letter-spacing: 0.05em; }
+  .warning-box p::before { content: '⚠ '; }
+  .banner { background: var(--charcoal); padding: 80px 48px; display: flex; align-items: center; justify-content: space-between; gap: 48px; position: relative; overflow: hidden; }
+  .banner::after { content: ''; position: absolute; right: -100px; top: -100px; width: 400px; height: 400px; border: 1px solid rgba(200,169,110,0.08); border-radius: 50%; }
+  .banner-text { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px, 4vw, 48px); letter-spacing: 0.08em; color: var(--white); line-height: 1.1; max-width: 600px; }
+  .banner-text em { font-style: normal; color: var(--gold); }
+  .banner-detail { font-size: 12px; color: var(--silver); line-height: 1.8; max-width: 360px; flex-shrink: 0; }
+  footer { padding: 64px 48px; border-top: 1px solid var(--steel); display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.15em; color: var(--white); }
+  .footer-logo span { color: var(--gold); }
+  .footer-note { font-size: 11px; color: var(--mid); letter-spacing: 0.1em; text-align: right; line-height: 1.7; }
+  @media (max-width: 900px) {
+    section { padding: 80px 24px; } nav { padding: 16px 24px; } .nav-links { display: none; }
+    .product-grid, .product-grid.three { grid-template-columns: 1fr; }
+    .banner { flex-direction: column; } .feature-strip { flex-direction: column; }
+    .feature-strip-item { border-right: none; border-bottom: 1px solid var(--steel); }
+    footer { flex-direction: column; gap: 24px; text-align: center; } .footer-note { text-align: center; }
+    .divider { margin: 0 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">STUD<em>'</em>S</div>
+  <ul class="nav-links">
+    <li><a href="#workwear">Work</a></li>
+    <li><a href="#knit">Knit</a></li>
+    <li><a href="#winter">Winter</a></li>
+    <li><a href="#tee">T-Shirt</a></li>
+    <li><a href="#sweat">Sweat</a></li>
+    <li><a href="#pigment">Pigment</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Autumn / Winter 2027 — New Collection</div>
+  <h1 class="hero-title">STUD'S<span>2027 A/W</span></h1>
+  <p class="hero-sub">Japan Quality · Cordura · Stretch · Waffle · Insulation</p>
+  <div class="hero-line"><span>Scroll</span><div class="scroll-bar"></div></div>
+</div>
+
+<div class="feature-strip">
+  <div class="feature-strip-item"><span class="feature-icon">◈</span><div class="feature-name">Japan Quality</div><div class="feature-desc">Cordura Japan Quality tag — highest grade in the lineup</div></div>
+  <div class="feature-strip-item"><span class="feature-icon">◉</span><div class="feature-name">14% Stretch</div><div class="feature-desc">Stretch polyester blend · No PU · Strong kickback</div></div>
+  <div class="feature-strip-item"><span class="feature-icon">◎</span><div class="feature-name">20,000g Moisture</div><div class="feature-desc">Cordura winter jacket · Moisture-permeable film laminate</div></div>
+  <div class="feature-strip-item"><span class="feature-icon">◇</span><div class="feature-name">Waffle Knit</div><div class="feature-desc">Menta touch · Lightweight · Quick-dry · Anti-pilling</div></div>
+  <div class="feature-strip-item"><span class="feature-icon">◆</span><div class="feature-name">Silky Cotton</div><div class="feature-desc">Silket process · Combed yarn · Smooth knit construction</div></div>
+</div>
+
+<div id="workwear"></div>
+<div class="divider"></div>
+<section>
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div class="section-meta">
+      <span class="section-tag">Work Setup</span>
+      <div class="section-title">Workwear Series</div>
+      <div class="section-model">Model No. 4210</div>
+    </div>
+  </div>
+  <div class="product-grid">
+    <div class="card card-highlight">
+      <span class="card-label">Key Material</span>
+      <div class="card-title">Japan Quality Cordura</div>
+      <div class="card-body">
+        Features the <strong>Cordura Japan Quality tag (black x silver)</strong> — a full grade above the standard yellow tag. 100% Cordura nylon used throughout all nylon components.<br><br>
+        A triple blend of Cordura, cotton, and <strong>stretch polyester</strong> delivers <strong>14% elongation with no PU</strong>. Durability and dry feel in one fabric — built for today's synthetic-dominant workwear market.<br><br>
+        <strong>Luftas finish by Kuraray</strong> tones down the typical rustling of polyester/nylon fabrics, bringing the hand feel closer to natural fibers.
+      </div>
+      <table class="spec-table">
+        <tr><td>Fabric</td><td>Cordura Nylon · Cotton · Stretch Polyester (Luftas finish)</td></tr>
+        <tr><td>Elongation</td><td>14% (stretch polyester · no PU)</td></tr>
+        <tr><td>Styles</td><td>Blouson · Jogger · Cargo Pants — 3 styles</td></tr>
+        <tr><td>Continuity</td><td>Ongoing SKU (long-term stock plan)</td></tr>
+      </table>
+      <div class="swatches">
+        <div class="swatch-item"><div class="swatch black"></div><div class="swatch-label">Black</div></div>
+        <div class="swatch-item"><div class="swatch army"></div><div class="swatch-label">Army</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <span class="card-label">Silhouette & Function</span>
+      <div class="card-title">Relaxed Fit & Smart Pockets</div>
+      <div class="card-body">
+        <strong>Slightly relaxed silhouette</strong> — ideal upgrade path for customers who find the 1200-series too slim or too stiff.<br><br>
+        <strong>Cargo pants pocket redesign:</strong> Based on user feedback from the Field trade show. L-pockets replaced with side pockets; all pockets now feature zippers or flaps to block sawdust, wood chips, and dust.<br><br>
+        Cotton content means the fabric <strong>softens with each wash</strong> — initial crispness gives way to a natural drape over time. Final spec: all zippers black, deeper black colorway confirmed.
+      </div>
+      <div class="tags">
+        <span class="tag gold">Japan Cordura</span>
+        <span class="tag">Luftas Finish</span>
+        <span class="tag">14% Stretch</span>
+        <span class="tag">Dust-Proof Pockets</span>
+        <span class="tag">3 Styles</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="knit"></div>
+<div class="divider"></div>
+<section>
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div class="section-meta">
+      <span class="section-tag">Knit Blouson</span>
+      <div class="section-title">Waffle Knit Blouson</div>
+      <div class="section-model">Model No. 4510</div>
+    </div>
+  </div>
+  <div class="product-grid three">
+    <div class="card">
+      <span class="card-label">Material</span>
+      <div class="card-title">Polyester Waffle</div>
+      <div class="card-body">
+        Polyester waffle fabric with <strong>Menta touch · anti-pilling · lightweight quick-dry · easy care</strong>. Hand feel is far softer than expected from polyester.<br><br>
+        Waffle construction <strong>traps air for insulation</strong> while the open knit allows breathability — functional performance from fabric structure alone.
+      </div>
+    </div>
+    <div class="card card-accent">
+      <span class="card-label">Design</span>
+      <div class="card-title">MA-1 Zip-Up</div>
+      <div class="card-body">
+        Military training wear-inspired zip-up MA-1. Sleeve stripe and piping add contrast. <strong>Ribbed collar (no hood)</strong> eliminates the double-hood problem under outerwear.<br><br>
+        <strong>3-season / 2-way use</strong> — standalone top in spring/fall, mid-layer in winter. All zippers black in final spec.
+      </div>
+      <div class="swatches">
+        <div class="swatch-item"><div class="swatch black"></div><div class="swatch-label">Black</div></div>
+        <div class="swatch-item"><div class="swatch army"></div><div class="swatch-label">Army</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <span class="card-label">Market & Price</span>
+      <div class="card-title">On-Trend · Accessible</div>
+      <div class="card-body">
+        Waffle is the <strong>defining trend of 2027</strong> — from Uniqlo to GU to high-end select shops. STUD'S stands out with a <strong>zip-up work blouson</strong> format while everyone else does T-shirts.
+      </div>
+      <div class="price-badge">Retail <span>¥6,000</span></div>
+    </div>
+  </div>
+</section>
+
+<div id="winter"></div>
+<div class="divider"></div>
+<section>
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div class="section-meta">
+      <span class="section-tag">High-End Insulation</span>
+      <div class="section-title">Winter Jacket</div>
+      <div class="section-model">Model No. 4400 / 4414</div>
+    </div>
+  </div>
+  <div class="product-grid">
+    <div class="card card-highlight">
+      <span class="card-label">4400 · Cordura Shell</span>
+      <div class="card-title">20,000g Moisture Transmission</div>
+      <div class="card-body">
+        <strong>100% Cordura nylon shell</strong> with laminated moisture-permeable film delivering <strong>20,000g/m²/24h moisture transmission</strong>. Waterproof zippers and internal pockets throughout.<br><br>
+        <strong>Fleece mesh lining (by Mitsuhoshi)</strong> solves the real-world problem: most insulated jackets advertise shell-level moisture specs, but the 3-layer structure (shell + insulation + lining) kills actual breathability. The mesh channels moisture directly so you actually feel the 20,000g spec.<br><br>
+        Inspired by Descente's Octa lining trend — reinterpreted as fleece mesh for workwear. Sleeve lining is taffeta for smooth arm movement.
+      </div>
+      <table class="spec-table">
+        <tr><td>Shell</td><td>100% Cordura Nylon</td></tr>
+        <tr><td>Moisture</td><td>20,000g (film laminate)</td></tr>
+        <tr><td>Lining</td><td>Fleece mesh (body) / Taffeta (sleeve)</td></tr>
+        <tr><td>Insulation</td><td>30g in sleeves only (body: mesh, no fill)</td></tr>
+        <tr><td>Zippers</td><td>Waterproof throughout</td></tr>
+        <tr><td>Hood</td><td>Detachable</td></tr>
+        <tr><td>Embroidery</td><td>Back STUD'S logo — tone-on-tone black</td></tr>
+      </table>
+      <div class="swatches">
+        <div class="swatch-item"><div class="swatch black"></div><div class="swatch-label">Black Only</div></div>
+      </div>
+      <div class="price-badge">Retail <span>¥15,000+</span></div>
+    </div>
+    <div class="card">
+      <span class="card-label">4414 · Coach Jacket Type</span>
+      <div class="card-title">Coach Winter Jacket</div>
+      <div class="card-body">
+        Nylon oxford shell with a <strong>natural finish</strong> — same base fabric as the North Face coach jacket, processed to feel soft and broken-in from day one. This finish is the key selling point.<br><br>
+        <strong>Thinsulate insulation</strong>: slim profile with high thermal retention. Lightweight and packable.<br><br>
+        Exterior pockets minimized; <strong>interior features dual hidden storage</strong> (zip pocket + welt pocket). Tone-on-tone piping on placket and cuffs adds dimension. Diamond quilt lining for a dressed-up finish.<br><br>
+        <strong>The modern successor to the Doka-jan</strong> — position it for customers who love that silhouette but want something sharper.
+      </div>
+      <table class="spec-table">
+        <tr><td>Shell</td><td>Nylon Oxford (water-repellent · natural finish)</td></tr>
+        <tr><td>Insulation</td><td>Thinsulate</td></tr>
+        <tr><td>Lining</td><td>Diamond quilt</td></tr>
+        <tr><td>Storage</td><td>Interior zip + welt pockets (dual)</td></tr>
+        <tr><td>Details</td><td>Tone piping · button placket · ribbed cuffs</td></tr>
+      </table>
+      <div class="price-badge">Retail <span>¥13,500</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="banner">
+  <div class="banner-text"><em>20,000g</em> of moisture<br>transmission you can<br>actually feel.</div>
+  <div class="banner-detail">Most insulated jackets quote shell-level specs. STUD'S 4400 uses a fleece mesh lining to eliminate 3-layer breathability loss — you feel the full spec from the moment you put it on. Built for mainland Japan winters.</div>
+</div>
+
+<div id="tee"></div>
+<div class="divider"></div>
+<section>
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div class="section-meta">
+      <span class="section-tag">Premium Tee</span>
+      <div class="section-title">Silky Cotton T-Shirt</div>
+      <div class="section-model">Model No. 4562</div>
+    </div>
+  </div>
+  <div class="product-grid">
+    <div class="card">
+      <span class="card-label">Material Story</span>
+      <div class="card-title">Silketed Cotton</div>
+      <div class="card-body">
+        <strong>Combed yarn</strong> (burr-free) + <strong>smooth knit construction</strong> + <strong>silket processing</strong> — three layers of refinement producing a silk-like hand feel from 100% cotton.<br><br>
+        Why "Silky Cotton"? Nylon was invented to replicate silk synthetically — making silk touch and synthetic touch nearly synonymous. This tee achieves that same quality through cotton alone.<br><br>
+        The feel of a <strong>¥10,000+ select-shop tee</strong> at workwear pricing. Contact-cooling value of 0.38 achieved naturally.
+      </div>
+      <div class="price-badge">Retail <span>¥4,500</span></div>
+    </div>
+    <div class="card card-accent">
+      <span class="card-label">Style Lineup</span>
+      <div class="card-title">2 Variations</div>
+      <div class="card-body">
+        <strong>① Rib-Hem Sweat Style</strong><br>
+        Stands alone as an outfit — wearable as a solo piece with a smart casual look.<br><br>
+        <strong>② Tone-on-Tone Pocket Tee</strong><br>
+        Same-color half-print pocket tee. Understated and refined — the hero piece of the collection.
+      </div>
+      <div class="tags">
+        <span class="tag gold">Silky Touch</span>
+        <span class="tag">Combed Yarn</span>
+        <span class="tag">Smooth Knit</span>
+        <span class="tag">Silket Process</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="sweat"></div>
+<div class="divider"></div>
+<section>
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div class="section-meta">
+      <span class="section-tag">Sweat</span>
+      <div class="section-title">Sweatshirt & Pants</div>
+      <div class="section-model">Model No. 9520 / 9527</div>
+    </div>
+  </div>
+  <div class="product-grid three">
+    <div class="card">
+      <span class="card-label">9520 Sweatshirt</span>
+      <div class="card-title">Crew Neck</div>
+      <div class="card-body">
+        Hood-free crew neck eliminates the double-hood issue when layered under outerwear. Designed to work as a mid-layer.<br><br>
+        Linked back embroidery matches the 2823 work shirt — strong as a standalone piece too.
+      </div>
+      <div class="tags">
+        <span class="tag">Anti-Pilling</span>
+        <span class="tag">Menta Touch</span>
+        <span class="tag">Quick Dry</span>
+      </div>
+    </div>
+    <div class="card card-accent">
+      <span class="card-label">9527 Sweat Pants</span>
+      <div class="card-title">Easy Pants</div>
+      <div class="card-body">
+        Finally in the lineup — built on customer demand. Easy-fit waistband with <strong>zip pocket + welt pocket (wallet-sized)</strong>. More functional than any budget sweat pant out there.<br><br>
+        Anti-pilling for long-term durability. Wear them the way a sports brand would intend.
+      </div>
+      <div class="swatches">
+        <div class="swatch-item"><div class="swatch black"></div><div class="swatch-label">Black</div></div>
+        <div class="swatch-item"><div class="swatch grey"></div><div class="swatch-label">Grey</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <span class="card-label">Shared Specs</span>
+      <div class="card-title">Full Feature Set</div>
+      <div class="card-body">Both sweatshirt and pants share the same core specification.</div>
+      <div class="tags">
+        <span class="tag gold">Anti-Pilling</span>
+        <span class="tag gold">Menta Touch</span>
+        <span class="tag">Matt Finish</span>
+        <span class="tag">Lightweight</span>
+        <span class="tag">Quick Dry</span>
+        <span class="tag">Easy Care</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="pigment"></div>
+<div class="divider"></div>
+<section>
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <div class="section-meta">
+      <span class="section-tag">Limited Edition</span>
+      <div class="section-title">Pigment Series</div>
+      <div class="section-model">Model No. 9544 / 9554 / 25624</div>
+    </div>
+  </div>
+  <div class="product-grid">
+    <div class="card card-highlight">
+      <span class="card-label">Technology</span>
+      <div class="card-title">Poly Pigment Process</div>
+      <div class="card-body">
+        Pigment dyeing is normally limited to <strong>natural fibers</strong> — but this series applies an equivalent process to <strong>100% polyester</strong>, achieving a vintage used-look never before done this way in workwear.<br><br>
+        Eliminates all the downsides of cotton pigment dyeing: <strong>no weight, no wrinkling, no slow drying, no stiffness</strong>. All the aesthetic, none of the compromise — lightweight, quick-dry, and easy care intact.<br><br>
+        Production includes an auxiliary agent to reduce color bleed vs. samples.
+      </div>
+      <div class="tags">
+        <span class="tag gold">Limited Run Only</span>
+        <span class="tag">Poly 100%</span>
+        <span class="tag">Used Finish</span>
+        <span class="tag">Lightweight</span>
+      </div>
+    </div>
+    <div class="card">
+      <span class="card-label">Care Notice — Important</span>
+      <div class="card-title">Color Fading Info</div>
+      <div class="card-body">
+        Due to the nature of the pigment process, <strong>color fading and color transfer will occur</strong>. Treat like dark denim — wash separately, especially when new.
+      </div>
+      <div class="warning-box">
+        <p>Color transfer to car seats, white innerwear, or light-colored fabrics is possible. Please inform customers before purchase. Not covered under warranty.</p>
+      </div>
+      <div class="warning-box" style="border-color:#4a5240;background:rgba(74,82,64,0.1);margin-top:8px;">
+        <p style="color:#6b7560;">Trade show samples have stronger color bleed. Final production improved with auxiliary agent finishing.</p>
+      </div>
+      <div class="tags" style="margin-top:20px;">
+        <span class="tag" style="border-color:#8b4513;color:#cd853f;">⚠ Color Transfer Risk</span>
+        <span class="tag" style="border-color:#4a5240;color:#6b7560;">First Run · Limited</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+<footer>
+  <div class="footer-logo">STUD<span>'</span>S</div>
+  <div class="footer-note">
+    2027 AUTUMN / WINTER COLLECTION<br>
+    Specifications based on final samples. Subject to change.<br>
+    © 2027 STUD'S — SOWA Co., Ltd.
+  </div>
+</footer>
+
+</body>
+</html>
